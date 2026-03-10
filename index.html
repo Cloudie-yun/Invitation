@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Noto+Serif+TC:wght@200..900&family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <style>
@@ -22,12 +21,12 @@
         body {
             background-color: var(--bg-red);
             color: var(--gold);
-            font-family: 'Noto Serif TC', serif;
+            font-family: "Noto Serif TC", serif;
             margin: 0;
             padding: 0;
             text-align: center;
             overflow-x: hidden;
-            min-height: 100vh;
+            height: auto;
         }
 
         /* --- BACKGROUND MATRIX --- */
@@ -72,46 +71,64 @@
             margin: 0 auto;
             padding: 20px 10px 100px 10px;
             z-index: 5;
+            height: auto;
         }
 
         /* --- SHOU CHARACTER ANIMATION --- */
+        .shou-section {
+            position: relative;
+            display: inline-block;
+            margin: 30px auto 10px;
+            padding: 30px 20px;
+        }
+        
         .shou-main{
-            width:200px;
-            margin:40px auto;
-            display:block;
-            transition:all 0.6s ease;
-        }
-
-        @keyframes goldGlow{
-            0%{
-                filter:drop-shadow(0 0 5px gold);
-            }
-
-            100%{
-                filter:
-                drop-shadow(0 0 10px gold)
-                drop-shadow(0 0 20px gold)
-                drop-shadow(0 0 30px #ffd700);
-            }
-        }
-
-        /* 寿 centre image */
-        .shou-main {
-            width: 130px;
-            flex-shrink: 0;
-            animation: shouAppear 1s 0.3s ease forwards;
-            opacity: 0;
-            transform: scale(0.6) rotate(-20deg);
+            display: block;
+            width: 180px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            animation: shouAppear 1s 0.2s ease both;
+            filter: drop-shadow(0 0 18px rgba(255,200,50,0.35));
         }
 
         @keyframes shouAppear {
-            60% { transform: scale(1.08) rotate(5deg); opacity: 1; }
-            100% { transform: scale(1) rotate(0); opacity: 1; }
+            from { opacity: 0; transform: scale(0.65) rotate(-15deg); }
+            60%  { transform: scale(1.07) rotate(4deg); opacity: 1; }
+            to   { transform: scale(1) rotate(0); opacity: 1; }
         }
 
-        /* ====================================================
-           REST OF PAGE (unchanged styles)
-           ==================================================== */
+        .cloud {
+            position: absolute;
+            width: 260px;
+            opacity: 0;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.35));
+        }
+
+        .cloud-bl {
+            bottom: -20px;
+            left: -125px;
+            transform: rotate(10deg) scale(0.85);
+            animation: cloudInBL 1s 0.7s ease both;
+        }
+
+        .cloud-tr {
+            width: 220px;
+            top: 10px;
+            right: -105px;
+            transform: scaleX(-1) scale(0.85);
+            animation: cloudInTR 1s 0.9s ease both;
+        }
+
+        @keyframes cloudInBL {
+            from { opacity: 0; transform: rotate(10deg) scale(0.7) translate(-12px, 12px); }
+            to   { opacity: 1; transform: rotate(10deg) scale(0.85) translate(0, 0); }
+        }
+
+        @keyframes cloudInTR {
+            from { opacity: 0; transform: scaleX(-1) scale(0.7) translate(-12px, 12px); }
+            to   { opacity: 1; transform: scaleX(-1) scale(0.85) translate(0, 0); }
+        }
 
         .location-info {
             background: rgba(0,0,0,0.3);
@@ -168,10 +185,11 @@
         .swiper-slide img { width: 100%; height: 100%; object-fit: cover; }
 
         .credits {
-            margin-top: 60px;
+            margin-bottom: 20px;
             font-size: 12px;
             opacity: 0.6;
             letter-spacing: 2px;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -251,10 +269,13 @@
 
     <div class="container">
         <!-- Fly-in Character -->
-        <img src="shou_character.png" class="shou-main">
+        <div class="shou-section">
+            <img src="clouds.png" class="cloud cloud-bl" alt="">
+            <img src="shou_character.png" class="shou-main" alt="寿">
+            <img src="clouds.png" class="cloud cloud-tr" alt="">
+        </div>
 
-        <p class="blessing-main">福如东海 • 寿比南山</p>
-        <h1>庆祝 廖金花 女士寿辰</h1>
+        <h1 style="font-family: 'Zhi Mang Xing', cursive; font-size: 2.5rem;">庆祝 廖金花 女士寿辰</h1>
 
         <div class="location-info">
             <div style="font-size: 1.3rem; font-weight: bold;">2026年3月22日 (星期日)</div>
@@ -282,32 +303,16 @@
             <div class="time-unit"><span id="minutes">00</span><span>Min</span></div>
             <div class="time-unit"><span id="seconds">00</span><span>Sec</span></div>
         </div>
+    </div>
 
-        <div class="swiper mySwiper">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide"><img src="奶奶.jpeg"></div>
-                <div class="swiper-slide"><img src="奶奶.jpeg"></div>
-                <div class="swiper-slide"><img src="奶奶.jpeg"></div>
-            </div>
-            <div class="swiper-pagination"></div>
-        </div>
-
-        <div class="credits">
+    <div class="credits">
             谨订于公元二〇二六年三月二十二日<br>
             张氏家族 敬邀
         </div>
-    </div>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        const swiper = new Swiper(".mySwiper", {
-            effect: "cards",
-            grabCursor: true,
-            autoplay: { delay: 2500 },
-            pagination: { el: ".swiper-pagination" },
-        });
-
         const target = new Date("March 22, 2026 18:00:00").getTime();
         setInterval(() => {
             const now = new Date().getTime();
