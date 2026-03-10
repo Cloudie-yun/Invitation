@@ -1,143 +1,288 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-Hant">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>廖金花女士寿辰之喜</title>
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@700&display=swap" rel="stylesheet">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-<title>庆祝廖金花女士寿辰</title>
+    <style>
+        :root {
+            --bg-red: #8B0000;
+            --gold: #f4cf7d;
+            --white: #ffffff;
+            --matrix-glow: rgba(244, 207, 125, 0.6);
+        }
 
-<style>
+        body {
+            background-color: var(--bg-red);
+            color: var(--gold);
+            font-family: 'Noto Serif TC', serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
 
-body{
-    margin:0;
-    font-family: "Noto Serif SC", "Microsoft YaHei", serif;
-    background:#8B0000;
-    display:flex;
-    justify-content:center;
-}
+        /* --- SIDE SCROLLS (MATRIX STYLE) --- */
+        .side-blessing {
+            position: fixed;
+            top: 0;
+            height: 100vh;
+            width: 60px;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
 
-.container{
-    max-width:600px;
-    width:100%;
-    text-align:center;
-}
+        .left-blessing {
+            left: 0;
+        }
 
-.poster{
-    width:100%;
-    height:auto;
-    display:block;
-}
+        .right-blessing {
+            right: 0;
+        }
 
-.info{
-    background:#8B0000;
-    color:#f5d27a;
-    padding:25px;
-}
+        .blessing-track {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+            font-size: 18px;
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+            opacity: 0.18;
+            animation: floatBlessings 18s linear infinite;
+        }
 
-h1{
-    margin-top:0;
-    font-size:26px;
-}
+        .right-blessing .blessing-track {
+            animation-direction: reverse;
+        }
 
-.details{
-    line-height:1.8;
-    font-size:18px;
-}
+        @keyframes floatBlessings {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-50%);
+            }
+        }
 
-.buttons{
-    margin-top:20px;
-}
+        .blessing-item {
+            letter-spacing: 6px;
+            text-shadow: 0 0 6px rgba(244,207,125,0.5);
+        }
 
-.btn{
-    display:block;
-    text-decoration:none;
-    margin:12px auto;
-    padding:14px;
-    width:80%;
-    max-width:300px;
-    background:#d4af37;
-    color:#8B0000;
-    font-weight:bold;
-    border-radius:8px;
-    font-size:16px;
-}
+        /* --- MAIN CONTAINER --- */
+        .container {
+            position: relative;
+            max-width: 450px;
+            margin: 0 auto;
+            padding: 20px 10px 100px 10px;
+            z-index: 2;
+        }
 
-.btn:hover{
-    background:#f5d27a;
-}
+        /* --- SHOU CHARACTER ANIMATION --- */
+        .shou-char {
+            width: 180px;
+            margin: 0 auto;
+            display: block;
+            animation: flyInTopLeft 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
+        }
 
-.footer{
-    margin-top:20px;
-    font-size:14px;
-    opacity:0.8;
-}
+        @keyframes flyInTopLeft {
+            0% { transform: translate(-150%, -150%) scale(0.2) rotate(-45deg); opacity: 0; }
+            100% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+        }
 
-@media (min-width:768px){
+        .blessing-main { font-size: 1.2rem; margin: 20px 0; letter-spacing: 3px; }
+        h1 { font-size: 1.6rem; margin-top: 0; }
 
-.container{
-    max-width:700px;
-}
+        /* --- RESTAURANT & NAV ICONS --- */
+        .location-info {
+            background: rgba(0,0,0,0.2);
+            border: 1px solid var(--gold);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 12px;
+        }
 
-h1{
-    font-size:30px;
-}
+        .nav-icons {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
 
-.details{
-    font-size:20px;
-}
+        .nav-icons a {
+            color: var(--gold);
+            font-size: 1.8rem;
+            text-decoration: none;
+            transition: transform 0.2s;
+        }
 
-}
+        .nav-icons a:active { transform: scale(0.8); }
+        .nav-icons span { display: block; font-size: 0.8rem; margin-top: 5px; }
 
-</style>
+        /* --- COUNTDOWN --- */
+        #countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        .time-unit {
+            background: var(--gold);
+            color: var(--bg-red);
+            padding: 10px;
+            border-radius: 8px;
+            min-width: 60px;
+        }
+        .time-unit span:first-child { font-size: 1.5rem; font-weight: bold; display: block; }
+        .time-unit span:last-child { font-size: 0.7rem; text-transform: uppercase; }
+
+        /* --- CAROUSEL --- */
+        .swiper {
+            width: 90%;
+            height: 250px;
+            border-radius: 15px;
+            border: 2px solid var(--gold);
+            margin-bottom: 40px;
+        }
+        .swiper-slide img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* --- DECORATIONS --- */
+        .decoration-bottom {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 50px;
+            background: url('waves.png') repeat-x;
+            background-size: contain;
+            z-index: 10;
+        }
+
+        /* Hide side scrolls on very small phones to prevent overlap */
+        @media (max-width: 400px) {
+            .side-scroll { display: none; }
+        }
+    </style>
 </head>
-
-
 <body>
 
-<div class="container">
+    <!-- Left side Matrix Blessing -->
+    <div class="side-blessing left-blessing">
+        <div class="blessing-track">
 
-<img src="invite.png" class="poster">
+            <div class="blessing-item">福寿安康</div>
+            <div class="blessing-item">松鹤延年</div>
+            <div class="blessing-item">福寿绵长</div>
+            <div class="blessing-item">春晖永驻</div>
 
-<div class="info">
+            <!-- duplicate for seamless scroll -->
+            <div class="blessing-item">福寿安康</div>
+            <div class="blessing-item">松鹤延年</div>
+            <div class="blessing-item">福寿绵长</div>
+            <div class="blessing-item">春晖永驻</div>
 
-<h1>七十四寿宴邀请</h1>
+        </div>
+    </div>
 
-<div class="details">
+    <!-- Right side Matrix Blessing -->
+    <div class="side-blessing right-blessing">
+        <div class="blessing-track">
 
-<p>📅 2026年3月22日（星期日）</p>
+            <div class="blessing-item">寿比南山</div>
+            <div class="blessing-item">延年益寿</div>
+            <div class="blessing-item">福寿康宁</div>
+            <div class="blessing-item">松柏长青</div>
 
-<p>🕕 晚上 6:00</p>
+            <div class="blessing-item">寿比南山</div>
+            <div class="blessing-item">延年益寿</div>
+            <div class="blessing-item">福寿康宁</div>
+            <div class="blessing-item">松柏长青</div>
 
-<p>📍 喜来登酒家（半山芭）</p>
+        </div>
+    </div>
 
-<p>Hee Lai Ton Restaurant (Pudu)</p>
+    <div class="container">
+        <!-- Fly-in Character -->
+        <img src="shou_character.png" alt="寿" class="shou-char">
 
-</div>
+        <p class="blessing-main">福如东海 • 寿比南山</p>
+        <h1>庆祝 廖金花 女士寿辰</h1>
 
+        <div class="location-info">
+            <div style="font-size: 1.3rem; font-weight: bold;">2026年3月22日 (星期日)</div>
+            <div style="margin: 5px 0;">晚上 6:00 PM</div>
+            <hr style="border: 0; border-top: 1px dashed var(--gold); margin: 15px 0;">
+            <div style="font-size: 1rem;">
+                喜来登酒家 (半山芭)<br>
+                Hee Lai Ton Restaurant (Pudu)
+            </div>
 
-<div class="buttons">
+            <!-- Font Awesome Icons moved here -->
+            <div class="nav-icons">
+                <a href="https://maps.app.goo.gl/3bwqegPF57GHg6h57?g_st=aw" target="_blank">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>Maps</span>
+                </a>
+                <a href="https://waze.com/ul/hw283fe8uf" target="_blank">
+                    <i class="fa-brands fa-waze"></i>
+                    <span>Waze</span>
+                </a>
+            </div>
+        </div>
 
-<a class="btn" 
-href="https://maps.app.goo.gl/3bwqegPF57GHg6h57?g_st=aw" 
-target="_blank">
-📍 点击导航到酒家
-</a>
+        <div id="countdown">
+            <div class="time-unit"><span id="days">00</span><span>Days</span></div>
+            <div class="time-unit"><span id="hours">00</span><span>Hrs</span></div>
+            <div class="time-unit"><span id="minutes">00</span><span>Min</span></div>
+            <div class="time-unit"><span id="seconds">00</span><span>Sec</span></div>
+        </div>
 
-<a class="btn" 
-href="https://waze.com/ul/hw283fe8uf" 
-target="_blank">
-📍 点击导航到酒家
-</a>
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="奶奶.jpeg"></div>
+                <div class="swiper-slide"><img src="奶奶.jpeg"></div>
+                <div class="swiper-slide"><img src="奶奶.jpeg"></div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
 
-</div>
+        <p style="font-size: 0.9rem; opacity: 0.8;">笑口常开 • 福满人间</p>
+    </div>
 
-<div class="footer">
-诚邀您共享温馨喜悦的时刻
-</div>
+    <div class="decoration-bottom"></div>
 
-</div>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // Swiper Config
+        const swiper = new Swiper(".mySwiper", {
+            effect: "cards",
+            grabCursor: true,
+            autoplay: { delay: 2500 },
+            pagination: { el: ".swiper-pagination" },
+        });
 
-</div>
-
+        // Countdown Logic
+        const target = new Date("March 22, 2026 18:00:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = target - now;
+            document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById("minutes").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById("seconds").innerText = Math.floor((diff % (1000 * 60)) / 1000);
+        }, 1000);
+    </script>
 </body>
 </html>
