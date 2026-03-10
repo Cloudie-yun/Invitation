@@ -74,114 +74,25 @@
             z-index: 5;
         }
 
-        /* ====================================================
-           NEW COUPLET DESIGN — no scrollbar, pure 春联 style
-           ==================================================== */
-
-        .spring-couplet {
-            margin-top: 30px;
+        /* --- SHOU CHARACTER ANIMATION --- */
+        .shou-main{
+            width:200px;
+            margin:40px auto;
+            display:block;
+            transition:all 0.6s ease;
         }
 
-        /* 横批 — horizontal banner */
-        .heng-pi {
-            display: inline-block;
-            position: relative;
-            background: linear-gradient(160deg, #cc0000 0%, #a00000 40%, #8b0000 60%, #b20000 100%);
+        @keyframes goldGlow{
+            0%{
+                filter:drop-shadow(0 0 5px gold);
+            }
 
-            color: #ffd700;
-            font-family: "Zhi Mang Xing", cursive;
-            font-size: 28px;
-            letter-spacing: 10px;
-            padding: 14px 44px;
-            border-radius: 0;
-
-            /* only a drop shadow, no outer ring */
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-
-            text-shadow:
-                0 0 8px rgba(255, 215, 0, 0.6),
-                1px 1px 2px rgba(0,0,0,0.6);
-
-            animation: fadeSlideDown 0.9s ease forwards;
-            opacity: 0;
-            transform: translateY(-18px);
-        }
-
-        /* single inner gold frame */
-        .heng-pi::before {
-            content: "";
-            position: absolute;
-            top: 6px; bottom: 6px;
-            left: 6px; right: 6px;
-            border: 1.5px solid rgba(220, 180, 60, 0.75);
-            pointer-events: none;
-        }
-
-
-        @keyframes fadeSlideDown {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* 春联主体 — two vertical panels + 寿 centre */
-        .couplet-body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 70px;          /* more breathing room */
-            margin-top: 18px;
-        }
-
-        /* individual 春联 panel */
-        .lian-panel {
-            position: relative;
-            writing-mode: vertical-rl;
-            text-orientation: upright;
-
-            font-family: "Zhi Mang Xing", cursive;
-            font-size: 27px;
-            line-height: 1.6;
-            letter-spacing: 5px;
-            color: #ffd700;
-
-            background: linear-gradient(to right, #c40000 0%, #a00000 45%, #b80000 100%);
-
-            padding: 28px 14px;
-            border-radius: 0;   /* sharp corners like real 春联 */
-
-            /* drop shadow only — no outer border ring */
-            box-shadow: 3px 5px 18px rgba(0,0,0,0.5);
-
-            text-shadow:
-                0 0 10px rgba(255,215,0,0.45),
-                1px 1px 2px rgba(0,0,0,0.5);
-
-            opacity: 0;
-        }
-
-        /* single inner gold frame line */
-        .lian-panel::before {
-            content: "";
-            position: absolute;
-            top: 8px; bottom: 8px;
-            left: 5px; right: 5px;
-            border: 1.5px solid rgba(220, 180, 60, 0.65);
-            pointer-events: none;
-        }
-
-        .lian-panel.left {
-            animation: fadeSlideLeft 0.9s 0.5s ease forwards;
-        }
-        .lian-panel.right {
-            animation: fadeSlideRight 0.9s 0.7s ease forwards;
-        }
-
-        @keyframes fadeSlideLeft {
-            from { opacity: 0; transform: translateX(-24px); }
-            to   { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes fadeSlideRight {
-            from { opacity: 0; transform: translateX(24px); }
-            to   { opacity: 1; transform: translateX(0); }
+            100%{
+                filter:
+                drop-shadow(0 0 10px gold)
+                drop-shadow(0 0 20px gold)
+                drop-shadow(0 0 30px #ffd700);
+            }
         }
 
         /* 寿 centre image */
@@ -339,24 +250,11 @@
     </div>
 
     <div class="container">
+        <!-- Fly-in Character -->
+        <img src="shou_character.png" class="shou-main">
 
-        <!-- ===== NEW COUPLET SECTION ===== -->
-        <div class="spring-couplet">
-
-            <!-- 横批 -->
-            <div class="heng-pi">福寿安康</div>
-
-            <!-- 两幅竖联 + 寿字 -->
-            <div class="couplet-body">
-                <div class="lian-panel left">福如东海长流水</div>
-                <img src="shou_character.png" class="shou-main" alt="寿">
-                <div class="lian-panel right">寿比南山不老松</div>
-            </div>
-
-        </div>
-        <!-- ===== END COUPLET SECTION ===== -->
-
-        <h1 style="font-family: 'Zhi Mang Xing', cursive; font-size: 30px;">庆祝 廖金花 女士寿辰</h1>
+        <p class="blessing-main">福如东海 • 寿比南山</p>
+        <h1>庆祝 廖金花 女士寿辰</h1>
 
         <div class="location-info">
             <div style="font-size: 1.3rem; font-weight: bold;">2026年3月22日 (星期日)</div>
