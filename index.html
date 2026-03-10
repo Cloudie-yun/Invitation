@@ -5,14 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>廖金花女士寿辰之喜</title>
     
-    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@700&display=swap" rel="stylesheet">
-    <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <style>
@@ -20,7 +17,6 @@
             --bg-red: #8B0000;
             --gold: #f4cf7d;
             --white: #ffffff;
-            --matrix-glow: rgba(244, 207, 125, 0.6);
         }
 
         body {
@@ -34,67 +30,41 @@
             min-height: 100vh;
         }
 
-        /* --- SIDE SCROLLS (MATRIX STYLE) --- */
-        .blessing-matrix{
-            position:fixed;
-            top:0;
-            left:0;
-            width:100%;
-            height:100%;
-
-            display:grid;
-            grid-template-columns:repeat(auto-fill,minmax(40px,1fr));
-            grid-auto-rows:40px;
-
+        /* --- BACKGROUND MATRIX --- */
+        .blessing-matrix {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+            grid-auto-rows: 40px;
             font-family: "Zhi Mang Xing", cursive;
-            font-size:26px;
-            font-weight:400;
-
-            pointer-events:none;
-            z-index:0;
-
-            opacity:0.15;
+            font-size: 30px;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.20;
         }
 
-        .blessing-matrix span{
-            display:flex;
-            align-items:center;
-            justify-content:center;
-
-            color:rgba(255,215,0,0.4);
-
-            text-shadow:
-            0 0 5px rgba(255,215,0,0.4);
-
-            animation:matrixGlow 4s infinite ease-in-out;
+        .blessing-matrix span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 215, 0, 0.4);
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.4);
+            animation: matrixGlow 4s infinite ease-in-out;
         }
 
-        @keyframes matrixGlow{
-            0%,100%{
-                color:rgba(255,215,0,0.35);
-                text-shadow:0 0 5px rgba(255,215,0,0.3);
-            }
-
-            40%{
-                color:rgba(255,215,0,0.8);
-                text-shadow:
-                0 0 8px gold,
-                0 0 15px gold;
-            }
-
-            60%{
-                color:#fff;
-                text-shadow:
-                0 0 10px white,
-                0 0 20px gold;
-            }
+        @keyframes matrixGlow {
+            0%, 100% { color: rgba(255,215,0,0.35); text-shadow: 0 0 5px rgba(255,215,0,0.3); }
+            40%       { color: rgba(255,215,0,0.8);  text-shadow: 0 0 8px gold, 0 0 15px gold; }
+            60%       { color: #fff;                 text-shadow: 0 0 10px white, 0 0 20px gold; }
         }
 
-        .blessing-matrix span:nth-child(7n){ animation-delay:0.3s; }
-        .blessing-matrix span:nth-child(11n){ animation-delay:1s; }
-        .blessing-matrix span:nth-child(5n){ animation-delay:2s; }
-        .blessing-matrix span:nth-child(9n){ animation-delay:1.5s; }
-        
+        .blessing-matrix span:nth-child(7n)  { animation-delay: 0.3s; }
+        .blessing-matrix span:nth-child(11n) { animation-delay: 1s; }
+        .blessing-matrix span:nth-child(5n)  { animation-delay: 2s; }
+        .blessing-matrix span:nth-child(9n)  { animation-delay: 1.5s; }
+
         /* --- MAIN CONTAINER --- */
         .container {
             position: relative;
@@ -104,38 +74,136 @@
             z-index: 5;
         }
 
-        /* --- SHOU CHARACTER ANIMATION --- */
-        .shou-main{
-            width:200px;
-            margin:40px auto;
-            display:block;
-            transition:all 0.6s ease;
+        /* ====================================================
+           NEW COUPLET DESIGN — no scrollbar, pure 春联 style
+           ==================================================== */
+
+        .spring-couplet {
+            margin-top: 30px;
         }
 
-        @keyframes goldGlow{
-            0%{
-                filter:drop-shadow(0 0 5px gold);
-            }
+        /* 横批 — horizontal banner */
+        .heng-pi {
+            display: inline-block;
+            position: relative;
+            background: linear-gradient(160deg, #cc0000 0%, #a00000 40%, #8b0000 60%, #b20000 100%);
 
-            100%{
-                filter:
-                drop-shadow(0 0 10px gold)
-                drop-shadow(0 0 20px gold)
-                drop-shadow(0 0 30px #ffd700);
-            }
+            color: #ffd700;
+            font-family: "Zhi Mang Xing", cursive;
+            font-size: 28px;
+            letter-spacing: 10px;
+            padding: 14px 44px;
+            border-radius: 0;
+
+            /* only a drop shadow, no outer ring */
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+
+            text-shadow:
+                0 0 8px rgba(255, 215, 0, 0.6),
+                1px 1px 2px rgba(0,0,0,0.6);
+
+            animation: fadeSlideDown 0.9s ease forwards;
+            opacity: 0;
+            transform: translateY(-18px);
         }
 
-        .cloud-header{
-            position:fixed;
-            top:-80px;
-            right:-200px;
-            width:180px;
-            opacity:0;
-            transition:all 0.6s ease;
+        /* single inner gold frame */
+        .heng-pi::before {
+            content: "";
+            position: absolute;
+            top: 6px; bottom: 6px;
+            left: 6px; right: 6px;
+            border: 1.5px solid rgba(220, 180, 60, 0.75);
+            pointer-events: none;
         }
-        /* --- RESTAURANT & NAV ICONS --- */
+
+
+        @keyframes fadeSlideDown {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 春联主体 — two vertical panels + 寿 centre */
+        .couplet-body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 70px;          /* more breathing room */
+            margin-top: 18px;
+        }
+
+        /* individual 春联 panel */
+        .lian-panel {
+            position: relative;
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+
+            font-family: "Zhi Mang Xing", cursive;
+            font-size: 27px;
+            line-height: 1.6;
+            letter-spacing: 5px;
+            color: #ffd700;
+
+            background: linear-gradient(to right, #c40000 0%, #a00000 45%, #b80000 100%);
+
+            padding: 28px 14px;
+            border-radius: 0;   /* sharp corners like real 春联 */
+
+            /* drop shadow only — no outer border ring */
+            box-shadow: 3px 5px 18px rgba(0,0,0,0.5);
+
+            text-shadow:
+                0 0 10px rgba(255,215,0,0.45),
+                1px 1px 2px rgba(0,0,0,0.5);
+
+            opacity: 0;
+        }
+
+        /* single inner gold frame line */
+        .lian-panel::before {
+            content: "";
+            position: absolute;
+            top: 8px; bottom: 8px;
+            left: 5px; right: 5px;
+            border: 1.5px solid rgba(220, 180, 60, 0.65);
+            pointer-events: none;
+        }
+
+        .lian-panel.left {
+            animation: fadeSlideLeft 0.9s 0.5s ease forwards;
+        }
+        .lian-panel.right {
+            animation: fadeSlideRight 0.9s 0.7s ease forwards;
+        }
+
+        @keyframes fadeSlideLeft {
+            from { opacity: 0; transform: translateX(-24px); }
+            to   { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes fadeSlideRight {
+            from { opacity: 0; transform: translateX(24px); }
+            to   { opacity: 1; transform: translateX(0); }
+        }
+
+        /* 寿 centre image */
+        .shou-main {
+            width: 130px;
+            flex-shrink: 0;
+            animation: shouAppear 1s 0.3s ease forwards;
+            opacity: 0;
+            transform: scale(0.6) rotate(-20deg);
+        }
+
+        @keyframes shouAppear {
+            60% { transform: scale(1.08) rotate(5deg); opacity: 1; }
+            100% { transform: scale(1) rotate(0); opacity: 1; }
+        }
+
+        /* ====================================================
+           REST OF PAGE (unchanged styles)
+           ==================================================== */
+
         .location-info {
-            background: rgba(0,0,0,0.2);
+            background: rgba(0,0,0,0.3);
             border: 1px solid var(--gold);
             padding: 20px;
             margin: 20px 0;
@@ -159,24 +227,25 @@
         .nav-icons a:active { transform: scale(0.8); }
         .nav-icons span { display: block; font-size: 0.8rem; margin-top: 5px; }
 
-        /* --- COUNTDOWN --- */
         #countdown {
             display: flex;
             justify-content: center;
             gap: 15px;
             margin: 30px 0;
         }
+
         .time-unit {
+            font-family: "Kalam", cursive;
             background: var(--gold);
             color: var(--bg-red);
             padding: 10px;
             border-radius: 8px;
             min-width: 60px;
         }
-        .time-unit span:first-child { font-size: 1.5rem; font-weight: bold; display: block; }
-        .time-unit span:last-child { font-size: 0.7rem; text-transform: uppercase; }
 
-        /* --- CAROUSEL --- */
+        .time-unit span:first-child { font-size: 1.5rem; font-weight: bold; display: block; }
+        .time-unit span:last-child  { font-size: 0.7rem; text-transform: uppercase; }
+
         .swiper {
             width: 90%;
             height: 250px;
@@ -184,28 +253,20 @@
             border: 2px solid var(--gold);
             margin-bottom: 40px;
         }
+
         .swiper-slide img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* --- DECORATIONS --- */
-        .decoration-bottom {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            height: 50px;
-            background: url('waves.png') repeat-x;
-            background-size: contain;
-            z-index: 10;
-        }
-
-        /* Hide side scrolls on very small phones to prevent overlap */
-        @media (max-width: 400px) {
-            .side-scroll { display: none; }
+        .credits {
+            margin-top: 60px;
+            font-size: 12px;
+            opacity: 0.6;
+            letter-spacing: 2px;
         }
     </style>
 </head>
 <body>
 
-    <!-- Background -->
+    <!-- Background Matrix -->
     <div class="blessing-matrix">
         <span>福</span><span>寿</span><span>安</span><span>康</span>
         <span>松</span><span>鹤</span><span>延</span><span>年</span>
@@ -278,11 +339,24 @@
     </div>
 
     <div class="container">
-        <!-- Fly-in Character -->
-        <img src="shou_character.png" class="shou-main">
 
-        <p class="blessing-main">福如东海 • 寿比南山</p>
-        <h1>庆祝 廖金花 女士寿辰</h1>
+        <!-- ===== NEW COUPLET SECTION ===== -->
+        <div class="spring-couplet">
+
+            <!-- 横批 -->
+            <div class="heng-pi">福寿安康</div>
+
+            <!-- 两幅竖联 + 寿字 -->
+            <div class="couplet-body">
+                <div class="lian-panel left">福如东海长流水</div>
+                <img src="shou_character.png" class="shou-main" alt="寿">
+                <div class="lian-panel right">寿比南山不老松</div>
+            </div>
+
+        </div>
+        <!-- ===== END COUPLET SECTION ===== -->
+
+        <h1 style="font-family: 'Zhi Mang Xing', cursive; font-size: 30px;">庆祝 廖金花 女士寿辰</h1>
 
         <div class="location-info">
             <div style="font-size: 1.3rem; font-weight: bold;">2026年3月22日 (星期日)</div>
@@ -292,8 +366,6 @@
                 喜来登酒家 (半山芭)<br>
                 Hee Lai Ton Restaurant (Pudu)
             </div>
-
-            <!-- Font Awesome Icons moved here -->
             <div class="nav-icons">
                 <a href="https://maps.app.goo.gl/3bwqegPF57GHg6h57?g_st=aw" target="_blank">
                     <i class="fa-solid fa-location-dot"></i>
@@ -322,15 +394,15 @@
             <div class="swiper-pagination"></div>
         </div>
 
-        <p style="font-size: 0.9rem; opacity: 0.8;">笑口常开 • 福满人间</p>
+        <div class="credits">
+            谨订于公元二〇二六年三月二十二日<br>
+            张氏家族 敬邀
+        </div>
     </div>
-
-    <div class="decoration-bottom"></div>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // Swiper Config
         const swiper = new Swiper(".mySwiper", {
             effect: "cards",
             grabCursor: true,
@@ -338,13 +410,12 @@
             pagination: { el: ".swiper-pagination" },
         });
 
-        // Countdown Logic
         const target = new Date("March 22, 2026 18:00:00").getTime();
         setInterval(() => {
             const now = new Date().getTime();
             const diff = target - now;
-            document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
-            document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById("days").innerText    = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById("hours").innerText   = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             document.getElementById("minutes").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
             document.getElementById("seconds").innerText = Math.floor((diff % (1000 * 60)) / 1000);
         }, 1000);
