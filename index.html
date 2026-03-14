@@ -155,6 +155,23 @@
         .nav-icons a:active { transform: scale(0.8); }
         .nav-icons span { display: block; font-size: 0.8rem; margin-top: 5px; }
 
+        /* --- GOOGLE MAP EMBED --- */
+        .map-container {
+            margin-top: 25px;
+            width: 100%;
+            height: 250px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--gold);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
         #countdown {
             display: flex;
             justify-content: center;
@@ -282,9 +299,10 @@
             <div style="margin: 5px 0;">晚上 6:00 PM</div>
             <hr style="border: 0; border-top: 1px dashed var(--gold); margin: 15px 0;">
             <div style="font-size: 1rem;">
-                喜来登酒家 (半山芭)<br>
-                Hee Lai Ton Restaurant (Pudu)
+                喜来登酒家 (半山芭) - 三楼<br>
+                Hee Lai Ton Restaurant (Pudu) - Third Floor
             </div>
+            
             <div class="nav-icons">
                 <a href="https://maps.app.goo.gl/3bwqegPF57GHg6h57?g_st=aw" target="_blank">
                     <i class="fa-solid fa-location-dot"></i>
@@ -295,6 +313,17 @@
                     <span>Waze</span>
                 </a>
             </div>
+
+            <!-- Embedded Google Map added here -->
+            <div class="map-container">
+                <iframe 
+                    src="https://maps.google.com/maps?q=Hee%20Lai%20Ton%20Restaurant%20Shaw%20Parade%20Pudu&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+
         </div>
 
         <div id="countdown">
@@ -309,6 +338,7 @@
         谨订于公元二〇二六年三月二十二日<br>
         张氏家族 敬邀
     </div>
+    
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
